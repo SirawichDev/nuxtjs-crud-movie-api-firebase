@@ -13,7 +13,7 @@
   </div>
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <nuxt-link to="/index">
+      <nuxt-link to="/">
 
       <a class="navbar-item">
         Home
