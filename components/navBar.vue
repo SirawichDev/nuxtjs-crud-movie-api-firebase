@@ -5,26 +5,52 @@
 
     </a>
 
-    <a role="button" class="navbar-burger burger " aria-label="menu"  data-target="navbarBasicExample">
+    <a role="button" @click="Onactive"  class="navbar-burger burger" :class="Isactive(active)" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
 
-  <div  class="navbar-menu">
+  <div id="navbarBasicExample" class="navbar-menu" :class="Isactive(active)">
     <div class="navbar-start">
-      <nuxt-link class="navbar-item"  no-prefetch to="/list">
+      <nuxt-link class="navbar-item" to="/">
       <a >
-        Movie List
+        Home
       </a>
       </nuxt-link>
-<nuxt-link to="/createM">
-      <a class="navbar-item">
-        Create
+<nuxt-link class="navbar-item" to="/list">
+
+      <a>
+      Global Movies List
       </a>
 </nuxt-link>
 
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          User
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Profile
+          </a>
+          <nuxt-link to="/user/movieslist">
+          <a class="navbar-item">
+            Your Movies
+          </a>
+          </nuxt-link>
+        <nuxt-link class="navbar-item" to="/user/createM/">
+          <a >
+                Create Your Movies
+          </a>
+        </nuxt-link>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="navbar-end">
@@ -33,9 +59,11 @@
           <a class="button is-primary">
             <strong>Sign up</strong>
           </a>
-          <a class="button is-light" @click="$router.push('/login')">
+          <nuxt-link class="button is-light" to="/user/login">
+              <a >
             Log in
-          </a>
+          </a></nuxt-link>
+
         </div>
       </div>
     </div>
@@ -44,25 +72,26 @@
 
 </template>
 
+
 <script>
 export default {
-  data() {
-    return {
-      isActive: false
+  data(){
+    return{
+      active: false
     }
   },
  methods:{
-    checkit() {
-      this.isActive = !this.isActive
-    },
-    goto(){
-      console.log('xx');
-      this.$router.push('/list')
-    }
+ Onactive(){
+   console.log('xx');
+    this.active = !this.active
+  },
+  Isactive(ac){
+if(ac){
+  return 'is-active'
+} else{
+  return ''
+}
+  }
  }
-
 }
 </script>
-
-<style scoped>
-</style>
