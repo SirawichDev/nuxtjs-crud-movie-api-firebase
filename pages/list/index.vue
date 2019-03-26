@@ -21,6 +21,6 @@ components:{
 h1{
   font-weight: bold;
   font-size: 20px;
-  text-align: center;
+  text-align: center !important;
 }
 </style>
