@@ -1,16 +1,18 @@
 <template>
   <div>
-    <h1>your Movies</h1>
-    <movie-list :uMovie="uMovies"/>
+    <titles title="Your Movies" sub="Miewmiew"></titles>
+    <movie-list :loaded="loaded" :uMovie="uMovies"/>
   </div>
 </template>
 <script>
 import axios from 'axios'
 import { mapGetters } from "vuex";
 import MovieList from '@/components/user/UserTable'
+import Titles from '@/components/Title/title'
 export default {
   components:{
-    MovieList
+    MovieList,
+    Titles
   },
   data(){
     return{
@@ -18,8 +20,7 @@ export default {
     }
   },
 computed:{
-  ...mapGetters(['uMovies'])
-},
-
+  ...mapGetters(['uMovies','isloaded'])
+}
 }
 </script>
