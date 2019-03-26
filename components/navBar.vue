@@ -19,10 +19,11 @@
         Movie List
       </a>
       </nuxt-link>
-
+<nuxt-link to="/createM">
       <a class="navbar-item">
         Create
       </a>
+</nuxt-link>
 
     </div>
 
