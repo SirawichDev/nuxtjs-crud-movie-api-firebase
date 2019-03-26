@@ -1,16 +1,19 @@
 <template>
 <section class="section">
   <h1>Movie List</h1>
-<tables></tables>
+<tables
+/>
 </section>
 </template>
 
 <script>
 import Tables from '~/components/Table.vue'
+
 export default {
 components:{
   Tables
-},
+  },
+
 }
 </script>
 
