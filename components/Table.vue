@@ -134,7 +134,7 @@ export default {
     }
   },
   created() {
-    console.log('xx')
+    this.$store.dispatch('setMovies', this.d)
     this.getMovieData()
   },
   filters: {
