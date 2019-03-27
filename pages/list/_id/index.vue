@@ -94,7 +94,9 @@ export default {
       } else if (tmovie === 'Drama') {
         return 'is-dark'
       } else if (tmovie === 'Crime') {
-        return 'is-purple'
+        return 'has-background-grey-light'
+      } else if (tmovie === 'Horror') {
+        return 'is-primary'
       }
     }
   },
