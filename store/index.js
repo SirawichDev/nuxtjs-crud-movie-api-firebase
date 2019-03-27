@@ -5,7 +5,8 @@ const createStore = () => {
     state: {
       movies: [],
       uMovies: [],
-      loaded: true
+      loaded: true,
+      movie: []
     },
     mutations: {
       setMovies(state, movies) {
@@ -21,6 +22,18 @@ const createStore = () => {
       },
       createMovies(state, movie) {
         state.uMovies.push(movie)
+      },
+      editMovie(state, emovie) {
+        const index = state.uMovies.findIndex(movie => movie.id === emovie.id)
+        state.uMovies[index] = emovie
+      },
+      getMovie(state, movie) {
+        state.movie = movie
+        console.log('single', state.movie)
+      },
+      deleteMovie(state, id) {
+        const index = state.uMovies.findIndex(movie => movie.id === id)
+        state.uMovies.splice(index, 1)
       }
     },
     actions: {
@@ -57,6 +70,27 @@ const createStore = () => {
             ctx.commit('loaded', false)
           })
           .catch(err => console.log(err))
+      },
+      async editMovie(ctx, movie) {
+        console.log(movie.id)
+        axios
+          .put(
+            `https://nuxty-fbf26.firebaseio.com/movies/${movie.id}.json`,
+            movie
+          )
+          .then(res => {
+            ctx.commit('editMovie', res.data)
+            this.$router.push('/user/movieslist')
+          })
+          .catch(err => console.log(err))
+      },
+      async deleteMovie(ctx, id) {
+        await axios
+          .delete(`https://nuxty-fbf26.firebaseio.com/movies/${id}.json`)
+          .then(() => {
+            console.log('deleting')
+            ctx.commit('deleteMovie', id)
+          })
       }
     },
     getters: {
@@ -68,6 +102,9 @@ const createStore = () => {
       },
       uMovies: state => {
         return state.uMovies
+      },
+      movie: state => {
+        return state.movie
       }
     }
   })
