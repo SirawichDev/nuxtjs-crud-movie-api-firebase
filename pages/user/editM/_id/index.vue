@@ -1,37 +1,46 @@
 <template>
   <section class="section">
-
-    <edit-form @sumiter="onSubmit" />
+    <headx></headx>
+    <edit-form
+      @sumiter="onSubmit"
+    />
   </section>
 </template>
 
 <script>
 import axios from 'axios'
-
-import EditForm from '~/components/Form/Create'
+import EditForm from '~/components/Form/Edit'
+import Headx from '@/components/Title/title'
 export default {
-  data() {
-    return {
-      data: {}
-    }
-  },
+
   components: {
-    EditForm
+    EditForm,
+    Headx
   },
   asyncData(context) {
+    console.log(context)
+
     return axios
-      .get(`https://nuxty-fbf26.firebaseio.com/movies/${context.params.id}.json`)
-      .then(res => console.log('asdas',res.data))
+      .get(
+        `https://nuxty-fbf26.firebaseio.com/movies/${context.params.id}.json`
+      )
+      .then(res => {
+             const newEditMovie = {
+        ...res.data,
+        updatedDate: new Date()
+      }
+        context.store.commit('getMovie',{...newEditMovie,id: context.params.id});
+        return {
+          uMovies: res.data
+        }
+      })
       .catch(err => console.log(err))
   },
-  created(){
-console.log(this.data);
-  },
   methods: {
-    onSubmit(createData) {
+    onSubmit(editData) {
+
       this.$store
-        .dispatch('createMovie', createData)
-        .then(() => this.$router.push('/user/movieslist'))
+        .dispatch('editMovie',  editData)
     }
   }
 }
