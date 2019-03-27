@@ -1,5 +1,6 @@
 <template>
   <section>
+
     <b-table
       :data="data"
       :total="data.length"
@@ -12,6 +13,7 @@
       :per-page="parPage"
       @sort="sorTer"
     >
+
       <template slot-scope="props">
         <b-table-column
           width="200"
@@ -36,17 +38,23 @@
           </span>
         </b-table-column>
         <b-table-column label="Overview">{{props.row.Overview | cutText(80)}}</b-table-column>
-         <b-table-column >
-           <nuxt-link :to="`/user/editM/${props.row.id}`">
-           <a class="button is-primary is-outlined">Outlined</a>
-           </nuxt-link>
-          </b-table-column>
+        <b-table-column>
+          <nuxt-link :to="`/user/editM/${props.row.id}`">
+            <a class="button is-primary is-outlined">Edit</a>
+          </nuxt-link>
+          <a
+            @click="$emit('delete',props.row.id)"
+            class="button is-primary is-danger"
+          >Delete</a>
+        </b-table-column>
       </template>
     </b-table>
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: ['uMovie', 'loaded'],
   data() {
@@ -62,7 +70,9 @@ export default {
       parPage: 20
     }
   },
-
+  computed: {
+    ...mapGetters(['movie'])
+  },
   methods: {
     typer(tmovie) {
       if (tmovie === 'Action') {
@@ -76,7 +86,9 @@ export default {
       } else if (tmovie === 'Drama') {
         return 'is-dark'
       } else if (tmovie === 'Crime') {
-        return 'is-purple'
+        return 'has-background-grey-light'
+      } else if (tmovie === 'Horror') {
+        return 'is-primary'
       }
     }
   },
