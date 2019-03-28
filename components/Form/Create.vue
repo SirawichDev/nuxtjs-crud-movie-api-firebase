@@ -5,8 +5,7 @@
       <b-field
         horizontal
         label="Movie Name"
-        :type="check"
-        :message="err"
+
       >
         <b-input
           v-model="createData.mName"
@@ -103,19 +102,7 @@
             Horror
           </label>
         </div>
-        <vue-stars
-          name="demo"
-          active-color="#1749ff"
-          inactive-color="#00ddae"
-          shadow-color="#e9ff00"
-          hover-color="#4435dd"
-          :max="5"
-          :value="4"
-          :readonly="false"
-          char=""
-          inactive-char=""
-          :class="fa"
-        />
+
       </b-field>
 
       <b-field
@@ -129,7 +116,7 @@
       </b-field>
 
       <b-field horizontal>
-        <!-- Label left empty for spacing -->
+
         <p class="control">
           <button
             type="submit"
