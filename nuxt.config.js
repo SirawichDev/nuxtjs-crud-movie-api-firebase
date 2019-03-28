@@ -1,8 +1,15 @@
 const pkg = require('./package')
-
+const routerBase =
+  process.env.DEPLOY_ENV === 'GH_PAGES'
+    ? {
+        router: {
+          base: '/nuxtjs-crud-firebase/'
+        }
+      }
+    : {}
 module.exports = {
   mode: 'universal',
-
+  ...routerBase,
   /*
    ** Headers of the page
    */
@@ -15,7 +22,6 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-
   /*
    ** Customize the progress-bar color
    */
