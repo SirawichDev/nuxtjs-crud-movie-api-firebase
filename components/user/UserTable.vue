@@ -1,4 +1,5 @@
 <template>
+
   <section>
 
     <b-table
@@ -56,7 +57,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  props: ['uMovie', 'loaded'],
+  props: ['uMovie'],
   data() {
     return {
       data: this.uMovie,
@@ -90,7 +91,16 @@ export default {
       } else if (tmovie === 'Horror') {
         return 'is-primary'
       }
-    }
+    },
+       sorTer(field, order) {
+      this.sortField = field
+      this.sortSelect = order
+      this.getMovieData()
+    },
+       pageChange(page) {
+      this.page = page
+      this.getMovieData()
+    },
   },
   filters: {
     cutText(value, length) {
