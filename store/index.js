@@ -38,9 +38,9 @@ const createStore = () => {
     },
     actions: {
       async nuxtServerInit(vctx, ctx) {
-        if (!process.client) {
-          console.log(ctx.req.session)
-        }
+        // if (!process.client) {
+        //   console.log(ctx.req.session)
+        // }
         vctx.commit('loaded', true)
         return await axios
           .get('https://nuxty-fbf26.firebaseio.com/movies.json')
