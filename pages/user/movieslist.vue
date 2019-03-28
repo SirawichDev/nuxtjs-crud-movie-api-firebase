@@ -4,11 +4,13 @@
       title="Your Movies"
       sub="Miewmiew"
     ></titles>
+<no-ssr  placeholder="Loading...">
     <movie-list
-      :loaded="loaded"
+
       @delete="Delete"
       :uMovie="uMovies"
     />
+  </no-ssr>
   </div>
 </template>
 <script>
