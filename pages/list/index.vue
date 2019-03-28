@@ -1,8 +1,10 @@
 <template>
 <section class="section">
   <h1>Movie List</h1>
-<tables
-/>
+  <no-ssr placeholder="Loading">
+
+<tables/>
+  </no-ssr>
 </section>
 </template>
 
